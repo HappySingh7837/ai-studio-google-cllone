@@ -18,14 +18,30 @@ import {
 } from "lucide-react";
 
 export function ChatInterface() {
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      type: "assistant" as const,
-      content: "Hello! I'm your AI assistant. How can I help you today?",
-      timestamp: new Date(),
-    },
-  ]);
+    type Message = {
+        id: number;
+        type: "assistant" | "user";
+        content: string;
+        timestamp: Date;
+      };
+      
+      const [messages, setMessages] = useState<Message[]>([
+        {
+          id: 1,
+          type: "assistant",
+          content: "Hello! I'm your AI assistant. How can I help you today?",
+          timestamp: new Date(),
+        },
+      ]);
+      
+//   const [messages, setMessages] = useState([
+//     {
+//       id: 1,
+//       type: "assistant" as const,
+//       content: "Hello! I'm your AI assistant. How can I help you today?",
+//       timestamp: new Date(),
+//     },
+//   ]);
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
